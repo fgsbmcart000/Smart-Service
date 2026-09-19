@@ -49,7 +49,10 @@
       }
 
       .kiosk {
+        min-height: 100vh;
         min-height: 100svh;
+        height: 100vh;
+        height: 100svh;
         display: grid;
         grid-template-rows: auto 1fr;
       }
@@ -148,11 +151,14 @@
       main {
         position: relative;
         min-height: 0;
+        height: 100%;
       }
 
       .carousel {
         position: relative;
-        height: 100%;
+        height: 100vh;
+        height: 100svh;
+        min-height: 640px;
         overflow: hidden;
         background: #f4dfbd;
       }
@@ -181,7 +187,10 @@
         color: inherit;
         text-decoration: none;
         overflow: hidden;
-        background: #d8a45d;
+        background-color: #d8a45d;
+        background-position: top center;
+        background-repeat: no-repeat;
+        background-size: cover;
       }
 
       .slide img {
@@ -379,6 +388,11 @@
           right: auto;
           bottom: 20px;
         }
+
+        .carousel {
+          height: 100vh;
+          min-height: 640px;
+        }
       }
     </style>
   </head>
@@ -404,7 +418,7 @@
       <main>
         <section class="carousel" aria-label="智慧服務台輪播入口">
           <article class="slide active" data-url="https://www.fgsbmc.org.tw/">
-            <a class="slide-link" href="https://www.fgsbmc.org.tw/" target="_blank" rel="noreferrer" aria-label="前往佛館官網首頁">
+            <a class="slide-link" href="https://www.fgsbmc.org.tw/" target="_blank" rel="noreferrer" aria-label="前往佛館官網首頁" style="background-image: url('./assets/banner-photo-1.jpg')">
               <img src="assets/banner-photo-1.jpg" alt="紅色佈置素材行李箱照片" />
               <div class="shade"></div>
               <div class="slide-copy">
@@ -417,7 +431,7 @@
           </article>
 
           <article class="slide" data-url="https://www.fgsbmc.org.tw/exhibition.aspx">
-            <a class="slide-link" href="https://www.fgsbmc.org.tw/exhibition.aspx" target="_blank" rel="noreferrer" aria-label="前往展覽資訊">
+            <a class="slide-link" href="https://www.fgsbmc.org.tw/exhibition.aspx" target="_blank" rel="noreferrer" aria-label="前往展覽資訊" style="background-image: url('./assets/banner-photo-2.jpg')">
               <img src="assets/banner-photo-2.jpg" alt="蘇澳媽黑糖糕伴手禮照片" />
               <div class="shade"></div>
               <div class="slide-copy">
@@ -430,7 +444,7 @@
           </article>
 
           <article class="slide" data-url="https://www.fgsbmc.org.tw/activity.aspx">
-            <a class="slide-link" href="https://www.fgsbmc.org.tw/activity.aspx" target="_blank" rel="noreferrer" aria-label="前往活動資訊">
+            <a class="slide-link" href="https://www.fgsbmc.org.tw/activity.aspx" target="_blank" rel="noreferrer" aria-label="前往活動資訊" style="background-image: url('./assets/banner-photo-3.jpg')">
               <img src="assets/banner-photo-3.jpg" alt="法師與來賓合影照片" />
               <div class="shade"></div>
               <div class="slide-copy">
@@ -443,7 +457,7 @@
           </article>
 
           <article class="slide" data-url="https://www.fgsbmc.org.tw/guide.aspx">
-            <a class="slide-link" href="https://www.fgsbmc.org.tw/guide.aspx" target="_blank" rel="noreferrer" aria-label="前往多語服務">
+            <a class="slide-link" href="https://www.fgsbmc.org.tw/guide.aspx" target="_blank" rel="noreferrer" aria-label="前往多語服務" style="background-image: url('./assets/banner-photo-4.jpg')">
               <img src="assets/banner-photo-4.jpg" alt="贊助圖書禮券海報" />
               <div class="shade"></div>
               <div class="slide-copy">
@@ -456,7 +470,7 @@
           </article>
 
           <article class="slide" data-url="https://www.fgsbmc.org.tw/traffic.aspx">
-            <a class="slide-link" href="https://www.fgsbmc.org.tw/traffic.aspx" target="_blank" rel="noreferrer" aria-label="前往交通資訊">
+            <a class="slide-link" href="https://www.fgsbmc.org.tw/traffic.aspx" target="_blank" rel="noreferrer" aria-label="前往交通資訊" style="background-image: url('./assets/banner-photo-5.jpg')">
               <img src="assets/banner-photo-5.jpg" alt="贊助偏鄉購書活動合影照片" />
               <div class="shade"></div>
               <div class="slide-copy">
@@ -484,9 +498,23 @@
       const slides = Array.from(document.querySelectorAll(".slide"));
       const dots = Array.from(document.querySelectorAll(".dot"));
       const progress = document.querySelector(".progress span");
+      const fallbackImages = [
+        "assets/banner-1.svg",
+        "assets/banner-2.svg",
+        "assets/banner-3.svg",
+        "assets/banner-4.svg",
+        "assets/banner-5.svg",
+      ];
       const intervalMs = 12000;
       let current = 0;
       let timer;
+
+      document.querySelectorAll(".slide img").forEach((image, index) => {
+        image.addEventListener("error", () => {
+          image.src = fallbackImages[index];
+          image.closest(".slide-link").style.backgroundImage = `url('${fallbackImages[index]}')`;
+        });
+      });
 
       function restartProgress() {
         progress.style.animation = "none";
