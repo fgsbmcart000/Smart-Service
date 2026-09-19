@@ -184,83 +184,15 @@
         background: #d8a45d;
       }
 
-      .slide-link::before {
-        content: "";
+      .slide img {
         position: absolute;
         inset: 0;
-        background:
-          radial-gradient(circle at 48% 32%, rgba(255, 249, 208, 0.9), rgba(242, 207, 131, 0.34) 28%, transparent 55%),
-          linear-gradient(135deg, #f8efe2 0%, #e5b86b 50%, #7b2e1e 100%);
-      }
-
-      .slide-link::after {
-        content: "";
-        position: absolute;
-        left: -8%;
-        right: -8%;
-        bottom: -2%;
-        height: 34%;
-        background:
-          radial-gradient(ellipse at 50% 100%, rgba(255, 250, 240, 0.92), rgba(255, 250, 240, 0.58) 52%, transparent 53%),
-          linear-gradient(0deg, rgba(255, 250, 240, 0.78), rgba(255, 250, 240, 0));
-        clip-path: polygon(0 35%, 18% 24%, 34% 38%, 50% 26%, 68% 39%, 84% 20%, 100% 34%, 100% 100%, 0 100%);
-      }
-
-      .slide:nth-of-type(2) .slide-link::before {
-        background:
-          radial-gradient(circle at 68% 28%, rgba(255, 245, 189, 0.86), rgba(237, 201, 120, 0.35) 30%, transparent 58%),
-          linear-gradient(135deg, #fff7e8 0%, #d6a85f 48%, #6f2f23 100%);
-      }
-
-      .slide:nth-of-type(3) .slide-link::before {
-        background:
-          radial-gradient(circle at 30% 25%, rgba(255, 249, 207, 0.92), rgba(245, 205, 118, 0.36) 32%, transparent 58%),
-          linear-gradient(135deg, #fff2d6 0%, #cf8f45 48%, #4f3426 100%);
-      }
-
-      .slide:nth-of-type(4) .slide-link::before {
-        background:
-          radial-gradient(circle at 52% 38%, rgba(255, 247, 204, 0.9), rgba(233, 186, 103, 0.32) 30%, transparent 58%),
-          linear-gradient(135deg, #fef1df 0%, #c57d3f 52%, #783223 100%);
-      }
-
-      .slide:nth-of-type(5) .slide-link::before {
-        background:
-          radial-gradient(circle at 62% 24%, rgba(255, 250, 210, 0.93), rgba(240, 197, 109, 0.36) 31%, transparent 58%),
-          linear-gradient(135deg, #fff9ec 0%, #ddb05e 48%, #713024 100%);
-      }
-
-      .slide-symbol {
-        position: absolute;
-        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+        display: block;
         z-index: 1;
-        opacity: 0.48;
-        pointer-events: none;
-      }
-
-      .slide-symbol::before,
-      .slide-symbol::after {
-        content: "";
-        position: absolute;
-        border-radius: 34px;
-        background: rgba(255, 244, 218, 0.45);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-      }
-
-      .slide-symbol::before {
-        width: clamp(280px, 34vw, 560px);
-        height: clamp(150px, 18vw, 290px);
-        left: 50%;
-        top: 38%;
-        transform: translate(-50%, -50%);
-      }
-
-      .slide-symbol::after {
-        width: clamp(160px, 18vw, 300px);
-        height: clamp(44px, 5vw, 76px);
-        left: 50%;
-        top: 58%;
-        transform: translateX(-50%);
       }
 
       .shade {
@@ -473,7 +405,7 @@
         <section class="carousel" aria-label="智慧服務台輪播入口">
           <article class="slide active" data-url="https://www.fgsbmc.org.tw/">
             <a class="slide-link" href="https://www.fgsbmc.org.tw/" target="_blank" rel="noreferrer" aria-label="前往佛館官網首頁">
-              <span class="slide-symbol" aria-hidden="true"></span>
+              <img src="assets/banner-photo-1.jpg" alt="紅色佈置素材行李箱照片" />
               <div class="shade"></div>
               <div class="slide-copy">
                 <span class="eyebrow">Smart Service</span>
@@ -486,7 +418,7 @@
 
           <article class="slide" data-url="https://www.fgsbmc.org.tw/exhibition.aspx">
             <a class="slide-link" href="https://www.fgsbmc.org.tw/exhibition.aspx" target="_blank" rel="noreferrer" aria-label="前往展覽資訊">
-              <span class="slide-symbol" aria-hidden="true"></span>
+              <img src="assets/banner-photo-2.jpg" alt="蘇澳媽黑糖糕伴手禮照片" />
               <div class="shade"></div>
               <div class="slide-copy">
                 <span class="eyebrow">Exhibition</span>
@@ -499,7 +431,7 @@
 
           <article class="slide" data-url="https://www.fgsbmc.org.tw/activity.aspx">
             <a class="slide-link" href="https://www.fgsbmc.org.tw/activity.aspx" target="_blank" rel="noreferrer" aria-label="前往活動資訊">
-              <span class="slide-symbol" aria-hidden="true"></span>
+              <img src="assets/banner-photo-3.jpg" alt="法師與來賓合影照片" />
               <div class="shade"></div>
               <div class="slide-copy">
                 <span class="eyebrow">Events</span>
@@ -512,7 +444,7 @@
 
           <article class="slide" data-url="https://www.fgsbmc.org.tw/guide.aspx">
             <a class="slide-link" href="https://www.fgsbmc.org.tw/guide.aspx" target="_blank" rel="noreferrer" aria-label="前往多語服務">
-              <span class="slide-symbol" aria-hidden="true"></span>
+              <img src="assets/banner-photo-4.jpg" alt="贊助圖書禮券海報" />
               <div class="shade"></div>
               <div class="slide-copy">
                 <span class="eyebrow">Translation</span>
@@ -525,7 +457,7 @@
 
           <article class="slide" data-url="https://www.fgsbmc.org.tw/traffic.aspx">
             <a class="slide-link" href="https://www.fgsbmc.org.tw/traffic.aspx" target="_blank" rel="noreferrer" aria-label="前往交通資訊">
-              <span class="slide-symbol" aria-hidden="true"></span>
+              <img src="assets/banner-photo-5.jpg" alt="贊助偏鄉購書活動合影照片" />
               <div class="shade"></div>
               <div class="slide-copy">
                 <span class="eyebrow">Visit</span>
