@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="展覽活動入口示意圖">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fff2d6"/>
+      <stop offset=".5" stop-color="#cf8f45"/>
+      <stop offset="1" stop-color="#4f3426"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="30%" cy="25%" r="45%">
+      <stop offset="0" stop-color="#fff9cf" stop-opacity=".95"/>
+      <stop offset=".55" stop-color="#f5cd76" stop-opacity=".36"/>
+      <stop offset="1" stop-color="#f5cd76" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="430" cy="240" r="410" fill="url(#sun)"/>
+  <path d="M0 660c145-46 285-62 420-48 145 15 250 74 410 83 218 13 395-78 770-90v295H0z" fill="#fff5e5" opacity=".72"/>
+  <path d="M500 330h600l80 240H420z" fill="#fff3d9" opacity=".42"/>
+  <path d="M560 380h480l52 152H508z" fill="#6e3328" opacity=".26"/>
+  <path d="M640 590h320" stroke="#fff7e7" stroke-width="18" stroke-linecap="round" opacity=".55"/>
+</svg>

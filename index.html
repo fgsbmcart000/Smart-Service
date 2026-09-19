@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>佛光山佛陀紀念館 智慧服務台</title>
+    <meta
+      name="description"
+      content="佛光山佛陀紀念館智慧服務台平板入口首頁，提供輪播導覽與快速連結。"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23863b26'/%3E%3Cpath d='M16 42h32l-5 10H21z' fill='%23f8d486'/%3E%3Cpath d='M24 26h16l4 16H20z' fill='%23fff3d0'/%3E%3Cpath d='M29 15h6l8 11H21z' fill='%23f8d486'/%3E%3C/svg%3E"
+    />
+    <style>
+      :root {
+        --ink: #2b1d18;
+        --muted: #75584b;
+        --line: rgba(116, 58, 32, 0.18);
+        --paper: #fff9ef;
+        --brand: #823925;
+        --brand-dark: #5e291d;
+        --gold: #d9a958;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--paper);
+        font-family:
+          "Noto Sans TC",
+          "PingFang TC",
+          "Microsoft JhengHei",
+          system-ui,
+          sans-serif;
+        overflow: hidden;
+      }
+
+      .kiosk {
+        min-height: 100svh;
+        display: grid;
+        grid-template-rows: auto 1fr;
+      }
+
+      header {
+        position: relative;
+        z-index: 5;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 28px;
+        min-height: 92px;
+        padding: 18px clamp(22px, 4vw, 64px);
+        background: rgba(255, 249, 239, 0.94);
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 10px 30px rgba(75, 38, 22, 0.08);
+        backdrop-filter: blur(14px);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        min-width: 320px;
+      }
+
+      .brand-mark {
+        width: 54px;
+        height: 54px;
+        border-radius: 16px;
+        display: grid;
+        place-items: center;
+        color: #fff3d0;
+        background: linear-gradient(145deg, var(--brand), var(--brand-dark));
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28);
+        font-size: 26px;
+        font-weight: 800;
+      }
+
+      .brand-title {
+        margin: 0;
+        font-size: clamp(22px, 2.1vw, 32px);
+        line-height: 1.15;
+        font-weight: 800;
+        letter-spacing: 0;
+      }
+
+      .brand-subtitle {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: clamp(14px, 1.25vw, 18px);
+        font-weight: 500;
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        min-height: 52px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 22px;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        color: var(--brand-dark);
+        text-decoration: none;
+        font-size: clamp(16px, 1.35vw, 20px);
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      nav a:focus-visible,
+      .slide-link:focus-visible,
+      .dot:focus-visible {
+        outline: 4px solid rgba(217, 169, 88, 0.55);
+        outline-offset: 4px;
+      }
+
+      nav a.active,
+      nav a:hover {
+        background: #fff1d7;
+        border-color: rgba(130, 57, 37, 0.18);
+      }
+
+      main {
+        position: relative;
+        min-height: 0;
+      }
+
+      .carousel {
+        position: relative;
+        height: 100%;
+        overflow: hidden;
+        background: #f4dfbd;
+      }
+
+      .slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transform: scale(1.02);
+        transition:
+          opacity 900ms ease,
+          transform 1200ms ease;
+        pointer-events: none;
+      }
+
+      .slide.active {
+        opacity: 1;
+        transform: scale(1);
+        pointer-events: auto;
+      }
+
+      .slide-link {
+        position: absolute;
+        inset: 0;
+        display: block;
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .shade {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(35, 22, 16, 0.76), rgba(35, 22, 16, 0.18) 55%, rgba(35, 22, 16, 0.04)),
+          linear-gradient(0deg, rgba(35, 22, 16, 0.44), transparent 45%);
+      }
+
+      .slide-copy {
+        position: absolute;
+        left: clamp(32px, 6vw, 92px);
+        bottom: clamp(88px, 11vw, 128px);
+        width: min(760px, 70vw);
+        color: #fffaf0;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        min-height: 38px;
+        padding: 0 16px;
+        border-radius: 999px;
+        background: rgba(255, 246, 224, 0.18);
+        border: 1px solid rgba(255, 246, 224, 0.32);
+        font-size: clamp(15px, 1.4vw, 19px);
+        font-weight: 700;
+      }
+
+      .slide-copy h2 {
+        margin: 22px 0 14px;
+        font-size: clamp(42px, 6vw, 84px);
+        line-height: 1.05;
+        font-weight: 900;
+        letter-spacing: 0;
+      }
+
+      .slide-copy p {
+        margin: 0;
+        max-width: 620px;
+        font-size: clamp(20px, 2.1vw, 30px);
+        line-height: 1.45;
+        font-weight: 500;
+      }
+
+      .cta {
+        margin-top: 32px;
+        display: inline-flex;
+        align-items: center;
+        min-height: 62px;
+        padding: 0 28px;
+        border-radius: 999px;
+        color: var(--brand-dark);
+        background: #fff4dc;
+        font-size: clamp(18px, 1.8vw, 24px);
+        font-weight: 800;
+        box-shadow: 0 18px 42px rgba(41, 20, 12, 0.22);
+      }
+
+      .controls {
+        position: absolute;
+        z-index: 4;
+        right: clamp(24px, 4vw, 64px);
+        bottom: clamp(26px, 4vw, 54px);
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 16px;
+        border-radius: 999px;
+        background: rgba(255, 250, 240, 0.76);
+        border: 1px solid rgba(255, 255, 255, 0.48);
+        backdrop-filter: blur(12px);
+      }
+
+      .dot {
+        width: 22px;
+        height: 22px;
+        border-radius: 999px;
+        border: 0;
+        background: rgba(130, 57, 37, 0.26);
+        cursor: pointer;
+        padding: 0;
+      }
+
+      .dot.active {
+        width: 54px;
+        background: var(--brand);
+      }
+
+      .progress {
+        position: absolute;
+        z-index: 4;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.24);
+      }
+
+      .progress span {
+        display: block;
+        width: 0;
+        height: 100%;
+        background: linear-gradient(90deg, #fff4dc, var(--gold));
+      }
+
+      .slide.active ~ .progress span {
+        animation: none;
+      }
+
+      @media (max-width: 900px) {
+        body {
+          overflow: auto;
+        }
+
+        .kiosk {
+          min-height: 100vh;
+          grid-template-rows: auto minmax(640px, 1fr);
+        }
+
+        header {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 14px;
+          min-height: auto;
+        }
+
+        .brand {
+          min-width: 0;
+        }
+
+        nav {
+          width: 100%;
+          justify-content: flex-start;
+          overflow-x: auto;
+          flex-wrap: nowrap;
+          padding-bottom: 4px;
+        }
+
+        nav a {
+          min-height: 48px;
+          padding: 0 18px;
+        }
+
+        .slide-copy {
+          left: 26px;
+          right: 26px;
+          bottom: 100px;
+          width: auto;
+        }
+
+        .slide-copy h2 {
+          font-size: clamp(38px, 12vw, 64px);
+        }
+
+        .slide-copy p {
+          font-size: 20px;
+        }
+
+        .controls {
+          left: 24px;
+          right: auto;
+          bottom: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="kiosk">
+      <header>
+        <div class="brand" aria-label="佛光山佛陀紀念館 智慧服務台">
+          <div class="brand-mark" aria-hidden="true">佛</div>
+          <h1 class="brand-title">
+            佛光山佛陀紀念館
+            <span class="brand-subtitle">智慧服務台</span>
+          </h1>
+        </div>
+        <nav aria-label="主要選單">
+          <a class="active" href="https://www.fgsbmc.org.tw/" target="_blank" rel="noreferrer">首頁</a>
+          <a href="https://www.fgsbmc.org.tw/exhibition.aspx" target="_blank" rel="noreferrer">展覽</a>
+          <a href="https://www.fgsbmc.org.tw/activity.aspx" target="_blank" rel="noreferrer">活動</a>
+          <a href="https://www.fgsbmc.org.tw/traffic.aspx" target="_blank" rel="noreferrer">交通</a>
+          <a href="https://www.fgsbmc.org.tw/contact.aspx" target="_blank" rel="noreferrer">服務</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="carousel" aria-label="智慧服務台輪播入口">
+          <article class="slide active" data-url="https://www.fgsbmc.org.tw/">
+            <a class="slide-link" href="https://www.fgsbmc.org.tw/" target="_blank" rel="noreferrer" aria-label="前往佛館官網首頁">
+              <img src="assets/banner-1.svg" alt="智慧導覽服務示意圖" />
+              <div class="shade"></div>
+              <div class="slide-copy">
+                <span class="eyebrow">Smart Service</span>
+                <h2>智慧導覽</h2>
+                <p>快速查詢館內服務、參觀資訊與即時公告。</p>
+                <span class="cta">點選前往</span>
+              </div>
+            </a>
+          </article>
+
+          <article class="slide" data-url="https://www.fgsbmc.org.tw/exhibition.aspx">
+            <a class="slide-link" href="https://www.fgsbmc.org.tw/exhibition.aspx" target="_blank" rel="noreferrer" aria-label="前往展覽資訊">
+              <img src="assets/banner-2.svg" alt="館內資訊服務示意圖" />
+              <div class="shade"></div>
+              <div class="slide-copy">
+                <span class="eyebrow">Exhibition</span>
+                <h2>展覽資訊</h2>
+                <p>瀏覽常設展、特展與近期展覽內容。</p>
+                <span class="cta">點選前往</span>
+              </div>
+            </a>
+          </article>
+
+          <article class="slide" data-url="https://www.fgsbmc.org.tw/activity.aspx">
+            <a class="slide-link" href="https://www.fgsbmc.org.tw/activity.aspx" target="_blank" rel="noreferrer" aria-label="前往活動資訊">
+              <img src="assets/banner-3.svg" alt="展覽活動入口示意圖" />
+              <div class="shade"></div>
+              <div class="slide-copy">
+                <span class="eyebrow">Events</span>
+                <h2>活動快訊</h2>
+                <p>掌握佛館講座、演出、教育推廣與節慶活動。</p>
+                <span class="cta">點選前往</span>
+              </div>
+            </a>
+          </article>
+
+          <article class="slide" data-url="https://www.fgsbmc.org.tw/guide.aspx">
+            <a class="slide-link" href="https://www.fgsbmc.org.tw/guide.aspx" target="_blank" rel="noreferrer" aria-label="前往多語服務">
+              <img src="assets/banner-4.svg" alt="多語言翻譯服務示意圖" />
+              <div class="shade"></div>
+              <div class="slide-copy">
+                <span class="eyebrow">Translation</span>
+                <h2>多語服務</h2>
+                <p>提供來館民眾更便利的語言協助與服務入口。</p>
+                <span class="cta">點選前往</span>
+              </div>
+            </a>
+          </article>
+
+          <article class="slide" data-url="https://www.fgsbmc.org.tw/traffic.aspx">
+            <a class="slide-link" href="https://www.fgsbmc.org.tw/traffic.aspx" target="_blank" rel="noreferrer" aria-label="前往交通資訊">
+              <img src="assets/banner-5.svg" alt="交通與園區服務示意圖" />
+              <div class="shade"></div>
+              <div class="slide-copy">
+                <span class="eyebrow">Visit</span>
+                <h2>交通導引</h2>
+                <p>查詢開放時間、交通方式與園區參觀資訊。</p>
+                <span class="cta">點選前往</span>
+              </div>
+            </a>
+          </article>
+
+          <div class="controls" aria-label="輪播控制">
+            <button class="dot active" type="button" aria-label="顯示第 1 張"></button>
+            <button class="dot" type="button" aria-label="顯示第 2 張"></button>
+            <button class="dot" type="button" aria-label="顯示第 3 張"></button>
+            <button class="dot" type="button" aria-label="顯示第 4 張"></button>
+            <button class="dot" type="button" aria-label="顯示第 5 張"></button>
+          </div>
+          <div class="progress" aria-hidden="true"><span></span></div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      const slides = Array.from(document.querySelectorAll(".slide"));
+      const dots = Array.from(document.querySelectorAll(".dot"));
+      const progress = document.querySelector(".progress span");
+      const intervalMs = 12000;
+      let current = 0;
+      let timer;
+
+      function restartProgress() {
+        progress.style.animation = "none";
+        progress.offsetHeight;
+        progress.style.animation = `fill ${intervalMs}ms linear forwards`;
+      }
+
+      function showSlide(index) {
+        current = (index + slides.length) % slides.length;
+        slides.forEach((slide, slideIndex) => {
+          slide.classList.toggle("active", slideIndex === current);
+        });
+        dots.forEach((dot, dotIndex) => {
+          dot.classList.toggle("active", dotIndex === current);
+        });
+        restartProgress();
+      }
+
+      function startTimer() {
+        window.clearInterval(timer);
+        timer = window.setInterval(() => showSlide(current + 1), intervalMs);
+      }
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          showSlide(index);
+          startTimer();
+        });
+      });
+
+      let touchStartX = 0;
+      document.querySelector(".carousel").addEventListener("touchstart", (event) => {
+        touchStartX = event.changedTouches[0].clientX;
+      });
+      document.querySelector(".carousel").addEventListener("touchend", (event) => {
+        const delta = event.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(delta) > 60) {
+          showSlide(current + (delta < 0 ? 1 : -1));
+          startTimer();
+        }
+      });
+
+      const style = document.createElement("style");
+      style.textContent = `@keyframes fill { from { width: 0; } to { width: 100%; } }`;
+      document.head.appendChild(style);
+      restartProgress();
+      startTimer();
+    </script>
+  </body>
+</html>

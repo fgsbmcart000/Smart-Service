@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="館內資訊服務示意圖">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fff7e8"/>
+      <stop offset=".45" stop-color="#d6a85f"/>
+      <stop offset="1" stop-color="#6f2f23"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="70%" cy="28%" r="45%">
+      <stop offset="0" stop-color="#fff5bd" stop-opacity=".85"/>
+      <stop offset=".5" stop-color="#edc978" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#edc978" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="1120" cy="245" r="420" fill="url(#halo)"/>
+  <path d="M0 690c210-80 430-90 670-22s475 68 930-18v250H0z" fill="#fffaf0" opacity=".68"/>
+  <path d="M230 585h1140" stroke="#fff1d3" stroke-width="5" opacity=".5"/>
+  <rect x="600" y="310" width="400" height="250" rx="28" fill="#fff4da" opacity=".62"/>
+  <rect x="648" y="350" width="304" height="170" rx="18" fill="#8d3f28" opacity=".28"/>
+  <circle cx="800" cy="595" r="20" fill="#fff4da" opacity=".75"/>
+</svg>
