@@ -58,7 +58,7 @@
       }
 
       header {
-        position: absolute;
+        position: relative;
         top: 0;
         left: 0;
         right: 0;
@@ -70,7 +70,7 @@
         min-height: 76px;
         padding: 14px clamp(22px, 4vw, 64px);
         color: #fffaf0;
-        background: linear-gradient(180deg, rgba(37, 22, 15, 0.52), rgba(37, 22, 15, 0));
+        background: #5e291d;
       }
 
       .brand {
@@ -156,11 +156,10 @@
 
       .carousel {
         position: relative;
-        height: 100vh;
-        height: 100svh;
-        min-height: 640px;
+        height: 100%;
+        min-height: 0;
         overflow: hidden;
-        background: #f4dfbd;
+        background: #17130f;
       }
 
       .slide {
@@ -187,7 +186,7 @@
         color: inherit;
         text-decoration: none;
         overflow: hidden;
-        background-color: #d8a45d;
+        background-color: #17130f;
         background-position: top center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -198,8 +197,8 @@
         inset: 0;
         width: 100%;
         height: 100%;
-        object-fit: cover;
-        object-position: top center;
+        object-fit: contain;
+        object-position: center;
         display: block;
         z-index: 1;
       }
@@ -341,7 +340,7 @@
 
         .kiosk {
           min-height: 100vh;
-          grid-template-rows: auto minmax(640px, 1fr);
+          grid-template-rows: auto minmax(0, 1fr);
         }
 
         header {
@@ -390,8 +389,8 @@
         }
 
         .carousel {
-          height: 100vh;
-          min-height: 640px;
+          height: 100%;
+          min-height: 0;
         }
       }
     </style>
@@ -417,68 +416,33 @@
 
       <main>
         <section class="carousel" aria-label="智慧服務台輪播入口">
-          <article class="slide active" data-url="https://www.fgsbmc.org.tw/">
-            <a class="slide-link" href="https://www.fgsbmc.org.tw/" target="_blank" rel="noreferrer" aria-label="前往佛館官網首頁" style="background-image: url('./assets/banner-photo-1.jpg')">
-              <img src="assets/banner-photo-1.jpg" alt="紅色佈置素材行李箱照片" />
-              <div class="shade"></div>
-              <div class="slide-copy">
-                <span class="eyebrow">Smart Service</span>
-                <h2>智慧導覽</h2>
-                <p>快速查詢館內服務、參觀資訊與即時公告。</p>
-                <span class="cta"><span class="zh">點選前往</span><span class="en">More Details</span></span>
-              </div>
+          <article class="slide active">
+            <a class="slide-link" href="http://lnago.com/ADR1R" target="_blank" rel="noopener noreferrer" aria-label="前往童話劇《罐頭小人》">
+              <img src="assets/banner-photo-1.jpg" alt="童話劇《罐頭小人》" />
             </a>
           </article>
 
-          <article class="slide" data-url="https://www.fgsbmc.org.tw/exhibition.aspx">
-            <a class="slide-link" href="https://www.fgsbmc.org.tw/exhibition.aspx" target="_blank" rel="noreferrer" aria-label="前往展覽資訊" style="background-image: url('./assets/banner-photo-2.jpg')">
-              <img src="assets/banner-photo-2.jpg" alt="蘇澳媽黑糖糕伴手禮照片" />
-              <div class="shade"></div>
-              <div class="slide-copy">
-                <span class="eyebrow">Exhibition</span>
-                <h2>展覽資訊</h2>
-                <p>瀏覽常設展、特展與近期展覽內容。</p>
-                <span class="cta"><span class="zh">點選前往</span><span class="en">More Details</span></span>
-              </div>
+          <article class="slide">
+            <a class="slide-link" href="http://lnago.com/ADR1S" target="_blank" rel="noopener noreferrer" aria-label="前往為人間：遇見星雲大師">
+              <img src="assets/banner-photo-2.jpg" alt="為人間：遇見星雲大師" />
             </a>
           </article>
 
-          <article class="slide" data-url="https://www.fgsbmc.org.tw/activity.aspx">
-            <a class="slide-link" href="https://www.fgsbmc.org.tw/activity.aspx" target="_blank" rel="noreferrer" aria-label="前往活動資訊" style="background-image: url('./assets/banner-photo-3.jpg')">
-              <img src="assets/banner-photo-3.jpg" alt="法師與來賓合影照片" />
-              <div class="shade"></div>
-              <div class="slide-copy">
-                <span class="eyebrow">Events</span>
-                <h2>活動快訊</h2>
-                <p>掌握佛館講座、演出、教育推廣與節慶活動。</p>
-                <span class="cta"><span class="zh">點選前往</span><span class="en">More Details</span></span>
-              </div>
+          <article class="slide">
+            <a class="slide-link" href="http://lnago.com/ADQ7R" target="_blank" rel="noopener noreferrer" aria-label="前往佛陀紀念館第18期徵才">
+              <img src="assets/banner-photo-3.jpg" alt="佛陀紀念館第18期徵才" />
             </a>
           </article>
 
-          <article class="slide" data-url="https://www.fgsbmc.org.tw/guide.aspx">
-            <a class="slide-link" href="https://www.fgsbmc.org.tw/guide.aspx" target="_blank" rel="noreferrer" aria-label="前往多語服務" style="background-image: url('./assets/banner-photo-4.jpg')">
-              <img src="assets/banner-photo-4.jpg" alt="贊助圖書禮券海報" />
-              <div class="shade"></div>
-              <div class="slide-copy">
-                <span class="eyebrow">Translation</span>
-                <h2>多語服務</h2>
-                <p>提供來館民眾更便利的語言協助與服務入口。</p>
-                <span class="cta"><span class="zh">點選前往</span><span class="en">More Details</span></span>
-              </div>
+          <article class="slide">
+            <a class="slide-link" href="http://lnago.com/ADR06" target="_blank" rel="noopener noreferrer" aria-label="前往人世間・迴響：南非天龍隊表演">
+              <img src="assets/banner-photo-4.jpg" alt="人世間・迴響：南非天龍隊表演" />
             </a>
           </article>
 
-          <article class="slide" data-url="https://www.fgsbmc.org.tw/traffic.aspx">
-            <a class="slide-link" href="https://www.fgsbmc.org.tw/traffic.aspx" target="_blank" rel="noreferrer" aria-label="前往交通資訊" style="background-image: url('./assets/banner-photo-5.jpg')">
-              <img src="assets/banner-photo-5.jpg" alt="贊助偏鄉購書活動合影照片" />
-              <div class="shade"></div>
-              <div class="slide-copy">
-                <span class="eyebrow">Visit</span>
-                <h2>交通導引</h2>
-                <p>查詢開放時間、交通方式與園區參觀資訊。</p>
-                <span class="cta"><span class="zh">點選前往</span><span class="en">More Details</span></span>
-              </div>
+          <article class="slide">
+            <a class="slide-link" href="https://www.fgsbmc.org.tw/tw/exhibition.aspx?serno=189" target="_blank" rel="noopener noreferrer" aria-label="前往菩提心起：國立歷史博物館典藏佛像特展">
+              <img src="assets/banner-photo-5.jpg" alt="菩提心起：國立歷史博物館典藏佛像特展" />
             </a>
           </article>
 
@@ -498,23 +462,9 @@
       const slides = Array.from(document.querySelectorAll(".slide"));
       const dots = Array.from(document.querySelectorAll(".dot"));
       const progress = document.querySelector(".progress span");
-      const fallbackImages = [
-        "assets/banner-1.svg",
-        "assets/banner-2.svg",
-        "assets/banner-3.svg",
-        "assets/banner-4.svg",
-        "assets/banner-5.svg",
-      ];
       const intervalMs = 12000;
       let current = 0;
       let timer;
-
-      document.querySelectorAll(".slide img").forEach((image, index) => {
-        image.addEventListener("error", () => {
-          image.src = fallbackImages[index];
-          image.closest(".slide-link").style.backgroundImage = `url('${fallbackImages[index]}')`;
-        });
-      });
 
       function restartProgress() {
         progress.style.animation = "none";
