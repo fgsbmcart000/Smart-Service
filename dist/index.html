@@ -54,11 +54,11 @@
         height: 100vh;
         height: 100svh;
         display: grid;
-        grid-template-rows: auto 1fr;
+        grid-template-rows: 1fr;
       }
 
       header {
-        position: relative;
+        position: absolute;
         top: 0;
         left: 0;
         right: 0;
@@ -70,8 +70,8 @@
         min-height: 76px;
         padding: 14px clamp(22px, 4vw, 64px);
         color: #fffaf0;
-        background: #17212b;
-        border-bottom: 1px solid rgba(255, 233, 186, 0.15);
+        background: transparent;
+        pointer-events: none;
       }
 
       .brand {
@@ -84,6 +84,7 @@
         display: block;
         width: clamp(192px, 16vw, 240px);
         height: auto;
+        filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.85));
       }
 
       .sr-only {
@@ -104,6 +105,7 @@
         justify-content: flex-end;
         gap: 14px;
         flex-wrap: wrap;
+        pointer-events: auto;
       }
 
       nav a {
@@ -115,13 +117,15 @@
         border: 1px solid rgba(247, 211, 144, 0.7);
         border-radius: 999px;
         color: #fff7e8;
-        background: linear-gradient(180deg, rgba(231, 189, 106, 0.26), rgba(193, 139, 66, 0.13));
+        background: rgba(20, 26, 29, 0.42);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
         text-decoration: none;
         font-size: clamp(16px, 1.2vw, 19px);
         font-weight: 700;
         white-space: nowrap;
-        box-shadow: 0 0 0 1px rgba(255, 238, 189, 0.08) inset, 0 0 18px rgba(221, 172, 89, 0.24);
-        text-shadow: 0 0 10px rgba(255, 226, 168, 0.35);
+        box-shadow: 0 0 0 1px rgba(255, 238, 189, 0.08) inset, 0 0 18px rgba(221, 172, 89, 0.2);
+        text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
         transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
       }
 
@@ -334,7 +338,7 @@
 
         .kiosk {
           min-height: 100vh;
-          grid-template-rows: auto minmax(0, 1fr);
+          grid-template-rows: 1fr;
         }
 
         header {
