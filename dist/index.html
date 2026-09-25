@@ -185,14 +185,28 @@
       }
 
       .home-stage {
-        display: grid;
-        place-items: center;
-        padding: 116px 28px 36px;
+        display: block;
+        padding: 0;
         color: #fff7e8;
         text-align: center;
         background:
           linear-gradient(180deg, rgba(8, 20, 35, 0.42) 0%, rgba(8, 17, 24, 0.1) 46%, rgba(7, 15, 18, 0.4) 100%),
           url("assets/museum-panorama.jpg") center center / cover no-repeat;
+      }
+
+      .home-link {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        padding: 116px 28px 36px;
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .home-link:focus-visible {
+        outline: 4px solid rgba(255, 225, 163, 0.96);
+        outline-offset: -8px;
       }
 
       .home-copy {
@@ -218,7 +232,7 @@
       .home-english {
         display: block;
         margin-top: 8px;
-        font-size: clamp(20px, 2.5vw, 36px);
+        font-size: clamp(30px, 3.5vw, 52px);
         font-weight: 600;
         letter-spacing: 0.08em;
       }
@@ -244,7 +258,7 @@
       .prompt-en {
         display: block;
         margin-top: 8px;
-        font-size: clamp(18px, 1.7vw, 26px);
+        font-size: clamp(24px, 2.4vw, 36px);
         font-weight: 600;
         letter-spacing: 0.04em;
       }
@@ -252,7 +266,7 @@
       .prompt-en.secondary {
         margin-top: 3px;
         color: #ffe1a3;
-        font-size: clamp(16px, 1.35vw, 21px);
+        font-size: clamp(21px, 1.9vw, 30px);
         font-weight: 500;
       }
 
@@ -513,8 +527,11 @@
         }
 
         .home-stage {
-          padding-top: 230px;
           background-position: 44% center;
+        }
+
+        .home-link {
+          padding-top: 230px;
         }
 
         .home-copy {
@@ -569,7 +586,8 @@
       </header>
 
       <main class="home-stage">
-        <div class="home-copy">
+        <a class="home-link" href="http://lnago.com/ADR1X" target="_blank" rel="noopener noreferrer" aria-label="前往智慧服務台首頁">
+          <div class="home-copy">
           <p class="home-kicker">歡迎使用</p>
           <h2 class="home-title">智慧服務台<span class="home-english" lang="en">Smart service desk</span></h2>
           <div class="translation-prompt">
@@ -577,7 +595,8 @@
             <span class="prompt-en" lang="en">Please Speak to Me</span>
             <span class="prompt-en secondary" lang="en">Let me translate for you</span>
           </div>
-        </div>
+          </div>
+        </a>
       </main>
 
       <section id="activity-panel" class="activity-panel" role="dialog" aria-modal="true" aria-label="最新活動資訊" aria-hidden="true">
