@@ -142,14 +142,112 @@
         box-shadow: 0 0 24px rgba(236, 185, 96, 0.45);
       }
 
+      nav button {
+        min-height: 54px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 26px;
+        border: 1px solid rgba(255, 230, 173, 0.9);
+        border-radius: 999px;
+        color: #2e2113;
+        background: linear-gradient(180deg, #ffe8b1, #dca957);
+        font: inherit;
+        font-size: clamp(16px, 1.2vw, 19px);
+        font-weight: 800;
+        white-space: nowrap;
+        cursor: pointer;
+        box-shadow: 0 0 26px rgba(235, 184, 94, 0.55);
+        transition: transform 180ms ease, box-shadow 180ms ease;
+      }
+
+      nav button:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 0 34px rgba(255, 205, 113, 0.72);
+      }
+
+      nav button:focus-visible,
+      .activity-close:focus-visible {
+        outline: 4px solid rgba(255, 232, 177, 0.75);
+        outline-offset: 4px;
+      }
+
       @media (prefers-reduced-motion: reduce) {
-        nav a { transition: none; }
+        nav a,
+        nav button,
+        .activity-panel { transition: none; }
       }
 
       main {
         position: relative;
         min-height: 0;
         height: 100%;
+      }
+
+      .home-stage {
+        display: grid;
+        place-items: center;
+        padding: 116px 28px 36px;
+        color: #fff7e8;
+        text-align: center;
+        background:
+          radial-gradient(circle at 50% 38%, rgba(213, 164, 79, 0.3), transparent 32%),
+          linear-gradient(145deg, #392417 0%, #151d25 55%, #0c1218 100%);
+      }
+
+      .home-title {
+        margin: 0;
+        font-size: clamp(34px, 5vw, 74px);
+        line-height: 1.15;
+        letter-spacing: 0.08em;
+        text-shadow: 0 8px 30px rgba(0, 0, 0, 0.42);
+      }
+
+      .home-title span {
+        display: block;
+        margin-top: 16px;
+        color: #e2bd78;
+        font-size: 0.42em;
+        font-weight: 500;
+        letter-spacing: 0.32em;
+      }
+
+      .activity-panel {
+        position: fixed;
+        inset: 0;
+        z-index: 20;
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+        background: #17130f;
+        transition: opacity 240ms ease, visibility 240ms ease;
+      }
+
+      .activity-panel.open {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .activity-close {
+        position: absolute;
+        top: 18px;
+        right: 22px;
+        z-index: 30;
+        min-width: 52px;
+        min-height: 52px;
+        padding: 0 18px;
+        border: 1px solid rgba(255, 244, 220, 0.72);
+        border-radius: 999px;
+        color: #fffaf0;
+        background: rgba(17, 18, 20, 0.58);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        font: inherit;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 0 18px rgba(0, 0, 0, 0.3);
       }
 
       .carousel {
@@ -359,9 +457,15 @@
           padding-bottom: 4px;
         }
 
-        nav a {
+        nav a,
+        nav button {
           min-height: 48px;
           padding: 0 18px;
+        }
+
+        .activity-close {
+          top: 12px;
+          right: 12px;
         }
 
         .slide-copy {
@@ -402,11 +506,17 @@
         <nav aria-label="主要選單">
           <a href="https://app.oratoflow.com/" target="_blank" rel="noopener noreferrer">智慧翻譯服務台</a>
           <a href="https://www.fgsbmc.org.tw/" target="_blank" rel="noopener noreferrer">佛館官網</a>
+          <button id="activity-open" type="button" aria-haspopup="dialog" aria-controls="activity-panel">最新活動資訊</button>
         </nav>
       </header>
 
-      <main>
-        <section class="carousel" aria-label="智慧服務台輪播入口">
+      <main class="home-stage">
+        <h2 class="home-title">佛光山佛陀紀念館<span>智慧服務台</span></h2>
+      </main>
+
+      <section id="activity-panel" class="activity-panel" role="dialog" aria-modal="true" aria-label="最新活動資訊" aria-hidden="true">
+        <button id="activity-close" class="activity-close" type="button">關閉</button>
+        <section class="carousel" aria-label="最新活動輪播">
           <article class="slide active">
             <a class="slide-link" href="http://lnago.com/ADR1R" target="_blank" rel="noopener noreferrer" aria-label="前往童話劇《罐頭小人》">
               <img src="assets/banner-photo-1.jpg" alt="童話劇《罐頭小人》" />
@@ -446,13 +556,16 @@
           </div>
           <div class="progress" aria-hidden="true"><span></span></div>
         </section>
-      </main>
+      </section>
     </div>
 
     <script>
       const slides = Array.from(document.querySelectorAll(".slide"));
       const dots = Array.from(document.querySelectorAll(".dot"));
       const progress = document.querySelector(".progress span");
+      const activityPanel = document.querySelector("#activity-panel");
+      const activityOpen = document.querySelector("#activity-open");
+      const activityClose = document.querySelector("#activity-close");
       const intervalMs = 12000;
       let current = 0;
       let timer;
@@ -479,6 +592,29 @@
         timer = window.setInterval(() => showSlide(current + 1), intervalMs);
       }
 
+      function openActivities() {
+        activityPanel.classList.add("open");
+        activityPanel.setAttribute("aria-hidden", "false");
+        showSlide(current);
+        startTimer();
+        activityClose.focus();
+      }
+
+      function closeActivities() {
+        activityPanel.classList.remove("open");
+        activityPanel.setAttribute("aria-hidden", "true");
+        window.clearInterval(timer);
+        activityOpen.focus();
+      }
+
+      activityOpen.addEventListener("click", openActivities);
+      activityClose.addEventListener("click", closeActivities);
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && activityPanel.classList.contains("open")) {
+          closeActivities();
+        }
+      });
+
       dots.forEach((dot, index) => {
         dot.addEventListener("click", () => {
           showSlide(index);
@@ -501,8 +637,6 @@
       const style = document.createElement("style");
       style.textContent = `@keyframes fill { from { width: 0; } to { width: 100%; } }`;
       document.head.appendChild(style);
-      restartProgress();
-      startTimer();
     </script>
   </body>
 </html>
