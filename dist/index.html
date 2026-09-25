@@ -175,6 +175,7 @@
       @media (prefers-reduced-motion: reduce) {
         nav a,
         nav button,
+        .start-button,
         .activity-panel { transition: none; }
       }
 
@@ -268,6 +269,40 @@
         color: #ffe1a3;
         font-size: clamp(21px, 1.9vw, 30px);
         font-weight: 500;
+      }
+
+      .start-button {
+        position: absolute;
+        left: 50%;
+        bottom: clamp(34px, 7vh, 80px);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        min-width: 230px;
+        padding: 16px 34px;
+        border: 1px solid rgba(255, 244, 218, 0.9);
+        border-radius: 999px;
+        color: #fffdf7;
+        background: linear-gradient(135deg, rgba(205, 145, 54, 0.94), rgba(129, 57, 37, 0.96));
+        box-shadow: 0 0 24px rgba(255, 206, 118, 0.58), 0 12px 30px rgba(0, 0, 0, 0.34);
+        font-size: clamp(22px, 2.1vw, 32px);
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        transform: translateX(-50%);
+        transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+      }
+
+      .start-button [lang="en"] {
+        font-size: 1.08em;
+        letter-spacing: 0.04em;
+      }
+
+      .home-link:hover .start-button,
+      .home-link:focus-visible .start-button {
+        filter: brightness(1.1);
+        box-shadow: 0 0 34px rgba(255, 212, 132, 0.82), 0 14px 34px rgba(0, 0, 0, 0.4);
+        transform: translateX(-50%) scale(1.04);
       }
 
       .activity-panel {
@@ -586,7 +621,7 @@
       </header>
 
       <main class="home-stage">
-        <a class="home-link" href="http://lnago.com/ADR1X" target="_blank" rel="noopener noreferrer" aria-label="前往智慧服務台首頁">
+        <a class="home-link" href="https://app.oratoflow.com/" target="_blank" rel="noopener noreferrer" aria-label="前往智慧服務台首頁">
           <div class="home-copy">
           <p class="home-kicker">歡迎使用</p>
           <h2 class="home-title">智慧服務台<span class="home-english" lang="en">Smart service desk</span></h2>
@@ -596,6 +631,7 @@
             <span class="prompt-en secondary" lang="en">Let me translate for you</span>
           </div>
           </div>
+          <span class="start-button">開始 <span lang="en">Start</span></span>
         </a>
       </main>
 
