@@ -191,25 +191,69 @@
         color: #fff7e8;
         text-align: center;
         background:
-          radial-gradient(circle at 50% 38%, rgba(213, 164, 79, 0.3), transparent 32%),
-          linear-gradient(145deg, #392417 0%, #151d25 55%, #0c1218 100%);
+          linear-gradient(180deg, rgba(8, 20, 35, 0.42) 0%, rgba(8, 17, 24, 0.1) 46%, rgba(7, 15, 18, 0.4) 100%),
+          url("assets/museum-panorama.jpg") center center / cover no-repeat;
+      }
+
+      .home-copy {
+        width: min(920px, 92vw);
+        transform: translateY(-5vh);
+        text-shadow: 0 4px 22px rgba(0, 0, 0, 0.72);
+      }
+
+      .home-kicker {
+        margin: 0 0 12px;
+        font-size: clamp(22px, 2.2vw, 34px);
+        font-weight: 500;
+        letter-spacing: 0.2em;
       }
 
       .home-title {
         margin: 0;
-        font-size: clamp(34px, 5vw, 74px);
-        line-height: 1.15;
-        letter-spacing: 0.08em;
-        text-shadow: 0 8px 30px rgba(0, 0, 0, 0.42);
+        font-size: clamp(48px, 7vw, 96px);
+        line-height: 1.08;
+        letter-spacing: 0.1em;
       }
 
-      .home-title span {
+      .home-english {
         display: block;
-        margin-top: 16px;
-        color: #e2bd78;
-        font-size: 0.42em;
+        margin-top: 8px;
+        font-size: clamp(20px, 2.5vw, 36px);
+        font-weight: 600;
+        letter-spacing: 0.08em;
+      }
+
+      .translation-prompt {
+        width: fit-content;
+        margin: 30px auto 0;
+        padding: 20px 34px 22px;
+        border-top: 1px solid rgba(255, 236, 199, 0.76);
+        color: #fff9ed;
+        background: linear-gradient(180deg, rgba(9, 18, 24, 0.22), rgba(9, 18, 24, 0.4));
+        -webkit-backdrop-filter: blur(4px);
+        backdrop-filter: blur(4px);
+      }
+
+      .prompt-zh {
+        display: block;
+        font-size: clamp(22px, 2.5vw, 36px);
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      .prompt-en {
+        display: block;
+        margin-top: 8px;
+        font-size: clamp(18px, 1.7vw, 26px);
+        font-weight: 600;
+        letter-spacing: 0.04em;
+      }
+
+      .prompt-en.secondary {
+        margin-top: 3px;
+        color: #ffe1a3;
+        font-size: clamp(16px, 1.35vw, 21px);
         font-weight: 500;
-        letter-spacing: 0.32em;
       }
 
       .activity-panel {
@@ -468,6 +512,20 @@
           right: 12px;
         }
 
+        .home-stage {
+          padding-top: 230px;
+          background-position: 44% center;
+        }
+
+        .home-copy {
+          transform: translateY(-2vh);
+        }
+
+        .translation-prompt {
+          margin-top: 22px;
+          padding: 16px 18px 18px;
+        }
+
         .slide-copy {
           left: 26px;
           right: 26px;
@@ -511,7 +569,15 @@
       </header>
 
       <main class="home-stage">
-        <h2 class="home-title">佛光山佛陀紀念館<span>智慧服務台</span></h2>
+        <div class="home-copy">
+          <p class="home-kicker">歡迎使用</p>
+          <h2 class="home-title">智慧服務台<span class="home-english" lang="en">Smart service desk</span></h2>
+          <div class="translation-prompt">
+            <span class="prompt-zh">即時翻譯　請對我說話</span>
+            <span class="prompt-en" lang="en">Please Speak to Me</span>
+            <span class="prompt-en secondary" lang="en">Let me translate for you</span>
+          </div>
+        </div>
       </main>
 
       <section id="activity-panel" class="activity-panel" role="dialog" aria-modal="true" aria-label="最新活動資訊" aria-hidden="true">
