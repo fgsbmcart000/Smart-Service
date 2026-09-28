@@ -1,0 +1,25 @@
+{
+  "name": "佛光山佛陀紀念館 智慧服務台",
+  "short_name": "智慧服務台",
+  "description": "佛光山佛陀紀念館智慧服務台",
+  "lang": "zh-Hant",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#32110c",
+  "theme_color": "#5e291d",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
